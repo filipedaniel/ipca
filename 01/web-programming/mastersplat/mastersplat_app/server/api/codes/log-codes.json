@@ -1,0 +1,6 @@
+{
+  "10030001" : "Error on get all Records!",
+  "10030002" : "Error when try to find Log!",
+  "30030001" : "Log not found!",
+  "20030001" : "Invalid Data Provider ID!"
+}

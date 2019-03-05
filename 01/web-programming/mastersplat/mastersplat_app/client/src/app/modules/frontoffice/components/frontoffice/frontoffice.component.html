@@ -1,0 +1,75 @@
+<div class="frontoffice-container">
+  <div class="frontoffice-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between">
+          <div class="logo">
+            <a routerLink="/">Mastersplat</a>
+          </div>
+          <div class="login">
+            <a routerLink="/dashboard">Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="frontoffice-title">Publications</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <div class="search-form-container">
+          <div class="row align-items-end"> 
+            <div class="col-12 col-sm-4 col-md-3 col-lg-2">
+              <div class="form-group mp-select">
+                <label for="search-select-options">Search By</label>
+                <ng-select [(ngModel)]="selectSearchOption" 
+                           [clearable]="false"
+                           placeholder="Select age">
+                    <ng-option [value]="'search'">All</ng-option>
+                    <ng-option [value]="'metadata.title'">Name</ng-option>
+                    <ng-option [value]="'metadata.lang'">Language</ng-option>
+                    <ng-option [value]="'custom'">Custom</ng-option>
+                    
+                </ng-select>
+              </div>
+            </div>
+            <div class="col-12 col-sm-8 col-md-9 col-lg-10">
+              <label for="search-input">Search:</label>
+              <div class="form-group mp-input mp-input--icon d-flex align-items-center">
+                <i class="fas fa-search"></i>
+                <input #searchInput id="search-input" (keyup)="search($event)" class=form-control>    
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div *ngIf="pageState === 0; else loadingData" class="frontoffice-list">
+          <div *ngIf="!publications$ || publications$?.length; else noData"
+          infiniteScroll (scrolled)="onScrollDown($event)">
+              <div class="total-info mt-15">Total: {{ totalOfPublications }}</div>
+
+              <app-frontoffice-publication-item *ngFor="let publication of publications$" [publication]="publication" ></app-frontoffice-publication-item>    
+          </div>
+        </div>
+        <ng-template #loadingData>
+          <div class="mp-search-loading">
+            loading...
+          </div>
+        </ng-template>
+        <ng-template #noData>
+          <div class="mp-search-loading">
+            No results found!
+          </div>
+        </ng-template>  
+        <div *ngIf="endInInfiniteScroll" class="mp-search-loading">
+          No more results!
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

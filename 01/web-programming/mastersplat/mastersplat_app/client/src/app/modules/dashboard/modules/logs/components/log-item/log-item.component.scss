@@ -1,0 +1,33 @@
+@import 'assets/scss/_variables.scss';
+
+.log-item {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  border: 1px solid $gray-color;
+  transition: all .2s ease;
+  @media (min-width: 768px) {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .records {
+    margin-bottom: 10px;
+  }
+  .date,
+  .data-provider {
+    font-weight: 300;
+    font-size: 12px;
+  }
+  .data-provider {
+    margin-bottom: 10px;
+  }
+  a.see-more {
+    text-decoration: underline;
+    color: inherit;
+    font-size: 12px;
+  }
+}

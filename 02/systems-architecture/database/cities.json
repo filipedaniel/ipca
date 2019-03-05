@@ -1,0 +1,4 @@
+{ "_id" : { "$oid" : "5c391473581fff2206070bd2" }, "fee" : 0.01, "description" : "Slamlas", "price" : 0.01, "__v" : 0 }
+{ "_id" : { "$oid" : "5c3914bf581fff2206070bd3" }, "fee" : 0.02, "description" : "Zruetrora", "price" : 0.2, "__v" : 0 }
+{ "_id" : { "$oid" : "5c3914d6581fff2206070bd4" }, "fee" : 0.04, "description" : "Rosemerrow", "price" : 0.2, "__v" : 0 }
+{ "_id" : { "$oid" : "5c3914e2581fff2206070bd5" }, "fee" : 0.01, "description" : "Shorepond", "price" : 0.05, "__v" : 0 }

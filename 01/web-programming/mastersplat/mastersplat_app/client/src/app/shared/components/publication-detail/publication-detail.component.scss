@@ -1,0 +1,29 @@
+.publication-detail {
+  margin-top: 20px;
+  .group-detail {
+    margin-bottom: 15px;
+    span {
+      font-size: 14px;
+      font-weight: 400;
+    }
+    p {
+      font-size: 14px;
+      font-weight: 300;
+      margin-bottom: 15px;
+      a {
+        text-decoration: underline;
+        color: inherit;
+        i {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 40px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+}

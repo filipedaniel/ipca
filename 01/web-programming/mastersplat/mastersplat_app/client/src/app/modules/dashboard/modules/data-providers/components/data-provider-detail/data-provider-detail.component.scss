@@ -1,0 +1,57 @@
+@import 'assets/scss/_variables.scss';
+
+#mp-data-provider-container {
+  padding: 15px 0;
+  .data-provider-detail-content {
+    .btn-back {
+      font-size: 14px;
+      cursor: pointer;
+      i {
+        font-size: 14px;
+        margin-right: 4px;
+      }
+    }
+  }
+  .data-provider-detail-content {
+    .form-group {
+      label {
+        font-size: 12px;
+        margin-bottom: 0px;
+      }
+      input {
+        border-radius: 0;
+      }
+    }
+    .group-detail {
+      margin-bottom: 15px;
+      font-weight: 300;
+      span {
+        font-weight: 400;
+
+      }
+    }
+    .group-total {
+      display: flex;
+      .refresh-list-content {
+        //margin-top: 20px;
+        //margin-bottom: 20px;
+        margin-left: 10px;
+        i {
+          cursor: pointer;
+        }
+      }
+    }
+
+    button {
+      margin-top: 15px;
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+      &:last-child {
+        @media (min-width: 992px) {
+          float: right;
+        }
+      }
+    }
+  }
+}

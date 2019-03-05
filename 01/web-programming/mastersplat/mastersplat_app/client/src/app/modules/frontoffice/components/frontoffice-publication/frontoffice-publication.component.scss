@@ -1,0 +1,36 @@
+#frontoffice-publication-container {
+  .frontoffice-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: #2A3F54;
+    z-index: 9999;
+    .logo {
+      a {
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 700;
+        letter-spacing: 1px;
+        line-height: 50px;
+        text-decoration: none;
+      }
+    }
+    .login a {
+      line-height: 50px;
+      color: #fff;
+      font-weight: 300;
+      font-size: 14px;
+      text-decoration: none;
+    }
+  
+  }
+  padding: 80px 0px 30px 0px;
+  .publication-detail-content {
+    .btn-back {
+      cursor: pointer;
+    }
+  }
+}

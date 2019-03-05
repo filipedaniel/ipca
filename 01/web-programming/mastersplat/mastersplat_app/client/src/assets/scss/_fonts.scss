@@ -1,0 +1,19 @@
+
+// Import Google Font
+//@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
+
+@font-face {
+  font-family: "Roboto";
+  font-weight: 300;
+	src: url("/assets/scss/fonts/roboto/Roboto-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-weight: 400;
+	src: url("/assets/scss/fonts/roboto/Roboto-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-weight: 700;
+	src: url("/assets/scss/fonts/roboto/Roboto-Bold.ttf") format("truetype");
+}

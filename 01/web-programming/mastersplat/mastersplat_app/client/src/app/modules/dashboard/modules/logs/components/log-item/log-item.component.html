@@ -1,0 +1,11 @@
+
+<div class="log-item">
+  <div class="records">Total of {{ log['total_records'] }} publications</div>      
+  <div class="date start-date">Start date: {{ log['start_date'] | date:'long' }}</div>
+  <div class="date end-date">End date: {{ log['end_date'] | date:'long' }}</div>
+  <div class="data-provider">Data Provider: {{ log['data_provider']['name'] }}</div>
+  <a routerLink="{{ log['_id'] }}" class="see-more">
+    Ver Mais
+  </a>
+</div>
+    

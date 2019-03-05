@@ -1,0 +1,45 @@
+<div class="main-container" id="mp-log-container">
+  <div class="container-top-bar">
+    <h1>Log</h1>
+  </div>
+  <div class="container-fluid ">
+    <div *ngIf="pageStatus === 1" class="log-detail-content">
+      Loading ...
+    </div>
+    <div *ngIf="!log && pageStatus === 0" class="log-detail-content">
+      <p>Log not found!</p>
+    </div>
+    <div *ngIf="log" class="log-detail-content">
+      <div class="row">
+        <div class="col-12">
+          <span class="btn-back" (click)="goBack()"><i class="fas fa-chevron-left"></i> Back</span>
+        </div>
+        <div class="col-12 list-content">
+          <div class="group-detail">
+            <p>Total of {{ log.total_records }} publications</p>
+          </div>
+          <div class="group-detail">
+            <span>Start Date: </span>
+            <p>{{ log.start_date | date:'medium' }}</p>
+          </div>
+          <div class="group-detail">
+            <span>End Date: </span>
+            <p>{{ log.end_date | date:'medium' }}</p>
+          </div>
+
+          
+          <h3>Data Provider:</h3>
+          <div class="group-detail">
+            <span>Name: </span>
+            <p>{{ log.data_provider.name }}</p>
+          </div>
+          <div class="group-detail">
+            <span>Url: </span>
+            <p>{{ log.data_provider.url }}</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

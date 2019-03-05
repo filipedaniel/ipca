@@ -1,0 +1,19 @@
+
+<div class="data-provider-item"
+  [class.item-ok]="dataprovider['status'] === 0"
+  [class.item-load]="dataprovider['status'] === 1"
+  [class.item-not-load]="dataprovider['status'] === -1"
+  [class.item-error]="dataprovider['status'] === 2">
+  
+  <div class="name">
+    <a routerLink="/dashboard/data-providers/{{ dataprovider['_id'] }}">
+      {{ dataprovider['name'] }}
+    </a>
+  </div>
+  <div class="url">{{ dataprovider['url'] }}</div>
+  <div class="total">{{ dataprovider['total'] }} publications</div>
+  
+  <a routerLink="/dashboard/data-providers/{{ dataprovider['_id'] }}" class="see-more">
+    Ver Mais
+  </a>
+</div>

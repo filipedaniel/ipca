@@ -1,0 +1,63 @@
+<div class="main-container" id="mp-publications-container">
+    <div class="container-top-bar">
+      <h1>Publications</h1>
+    </div>
+  
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="search-form-container">
+            <div class="row align-items-end"> 
+              <div class="col-12">
+                <div class="form-group mp-input mp-input--icon d-flex align-items-center">
+                  <i class="fas fa-search"></i>
+                  <input #searchInput id="search-input" (keyup)="search($event)" class=form-control>    
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="pageState === 0; else loadingData" class="mp-publications-list-container">
+            <div class="row" *ngIf="!publications$ || publications$.data?.length; else noData">
+              
+              <div class="col-12 d-flex justify-content-between mt-15">
+                <div class="total-info">
+                  Total: {{ totalOfPublications }}
+                </div>
+                <div class="perview-switch">
+                  <span [class.active]="paginationLimit === 10" (click)=changeLimit(10)>10</span>/
+                  <span [class.active]="paginationLimit === 20" (click)=changeLimit(20)>20</span>
+                </div>
+              </div>
+              <div class="col-12">
+                <app-publication-item *ngFor="let publication of publications$.data" [publication]="publication"></app-publication-item>
+              </div>
+              <div class="col-12">
+                <div class="pagination mt-15 justify-content-center">
+                  <pagination 
+                    [totalItems]="publications$.total"
+                    [maxSize]="5"
+                    [itemsPerPage]="publications$.limit"
+                    (pageChanged)="pageChanged($event)"
+                    previousText="&lsaquo;"
+                    nextText="&rsaquo;">
+                  </pagination>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <ng-template #loadingData>
+            <div class="mp-search-loading">
+              loading...
+            </div>
+          </ng-template>
+          <ng-template #noData>
+            <div class="mp-no-data">
+              No results found!
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,66 @@
+<div class="publication-detail">
+  <div class="group-detail">
+    <span>Identifier </span>
+    <p>{{ publication.identifier }}</p>
+  </div>
+  <div class="group-detail">
+    <span>Datestamp </span>
+    <p>{{ publication.datestamp | date:'medium' }}</p>
+  </div>
+  <h3>Metadata</h3>
+  <div class="group-detail">
+    <span>Title </span>
+    <p>{{ publication.metadata.title }}</p>
+  </div>
+  <div class="group-detail">
+    <span>Type </span>
+    <p>{{ publication.metadata.type }}</p>
+  </div>
+  <div class="group-detail">
+    <span>Language </span>
+    <p>{{ publication.metadata.lang }}</p>
+  </div>
+  <div class="group-detail">
+    <span>Creator </span>
+    <p *ngFor="let p of publication.metadata?.creator">{{ p }}</p>
+  </div>
+  <div class="group-detail">
+    <span>Subject </span>
+    <p>{{ publication.metadata.subject.join('; ') }}</p>
+  </div>
+  <div class="group-detail">
+    <span>Description </span>
+    <p *ngFor="let p of publication.metadata?.description">{{ p }}</p>
+  </div>
+  <div class="group-detail">
+    <span>Identifier </span>
+    <p *ngFor="let p of publication.metadata?.identifier">
+      <a href="{{ p }}" target="_blank">{{ p }}<i class="fas fa-external-link-alt"></i></a>
+    </p>              
+  </div>
+  <div class="group-detail" *ngIf="publication.metadata?.publisher.length > 0">
+    <span>Publisher </span>
+    <p *ngFor="let p of publication.metadata?.publisher">{{ p }}</p>              
+  </div>
+  <div class="group-detail" *ngIf="publication.metadata?.contributor.length > 0">
+    <span>Contributor </span>
+    <p *ngFor="let p of publication.metadata?.contributor">{{ p }}</p>              
+  </div>
+  <div class="group-detail" *ngIf="publication.metadata?.date.length > 0">
+    <span>Date </span>
+    <p>{{ publication.metadata.date[0] }}</p>              
+  </div>
+  <div class="group-detail">
+    <span>Rights </span>
+    <p>{{ publication.metadata.rights }}</p>
+  </div>
+  <h3>Data Provider</h3>
+  <div class="group-detail">
+    <span>Name </span>
+    <p>{{ publication.data_provider.name }}</p>
+  </div>
+  <div class="group-detail">
+    <span>Url </span>
+    <p>{{ publication.data_provider.url }}</p>
+  </div>
+</div>

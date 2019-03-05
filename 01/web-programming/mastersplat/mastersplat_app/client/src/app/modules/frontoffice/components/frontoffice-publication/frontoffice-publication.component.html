@@ -1,0 +1,34 @@
+<div id="frontoffice-publication-container">
+  <div class="frontoffice-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-between">
+          <div class="logo">
+            <a routerLink="/">Mastersplat</a>
+          </div>
+          <div class="login">
+            <a routerLink="/dashboard">Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+  <div *ngIf="pageStatus === 1" class="publication-detail-content">
+      Loading ...
+    </div>
+    <div *ngIf="!publication && pageStatus === 0" class="publication-detail-content">
+      <p>Publication not found!</p>
+    </div>
+    <div *ngIf="publication" class="publication-detail-content">
+      <div class="row">
+        <div class="col-12">
+          <span class="btn-back" (click)="goBack()"><i class="fas fa-chevron-left"></i> Back</span>
+        </div>
+        <div class="col-12">
+          <app-publication-detail [publication]="publication"></app-publication-detail>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+{
+  "title":"travels",
+  "data":{
+    "1" : { "origin": "barcelos", "destination": "barcelos" },
+    "2" : { "origin": "barcelos", "destination": "barcelos" },
+    "3" : { "origin": "barcelos", "destination": "braga" },
+    "4" : { "origin": "braga", "destination": "braga" },
+    "5" : { "origin": "braga", "destination": "porto" },
+    "6" : { "origin": "porto", "destination": "braga" },
+    "7" : { "origin": "braga", "destination": "lisboa" },
+    "8" : { "origin": "porto", "destination": "lisboa" },
+    "9" : { "origin": "porto", "destination": "lisboa" },
+    "10" : { "origin": "lisboa", "destination": "lisboa" },
+    "11" : { "origin": "lisboa", "destination": "porto" },
+    "12" : { "origin": "porto", "destination": "porto" },
+    "13" : { "origin": "porto", "destination": "porto" },
+    "14" : { "origin": "porto", "destination": "barcelos" },
+    "15" : { "origin": "porto", "destination": "braga" }
+  }
+}

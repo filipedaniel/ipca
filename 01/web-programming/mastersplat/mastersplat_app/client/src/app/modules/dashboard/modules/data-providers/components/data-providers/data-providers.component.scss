@@ -1,0 +1,30 @@
+@import 'assets/scss/_variables.scss';
+
+#mp-data-providers-container {
+  padding: 15px 0;
+  .mp-data-providers-list-container,
+  .mp-data-providers-result-container {
+    padding: 15px 0px;
+  }
+  .total-info {
+    font-weight: 300;
+    display: flex;
+    .refresh-list-content {
+      margin-left: 10px;
+      i {
+        cursor: pointer;
+      }
+    }
+  }
+  .perview-switch {
+    span {
+      font-weight: 300;
+      cursor: pointer;
+      &.active,
+      &:hover {
+        font-weight: 700;
+      }
+    }
+  }
+  
+}

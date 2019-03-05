@@ -1,0 +1,52 @@
+@import 'assets/scss/_variables.scss';
+
+.data-provider-item {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #fff;
+  border: 1px solid $gray-color;
+  transition: all .2s ease;
+  &.item-ok {
+    border-right: 3px solid #a0d468;
+  }
+  &.item-not-load {
+    border-right: 3px solid #aeaeae;
+  }
+  &.item-load {
+    border-right: 3px solid #ff0;
+  }
+  &.item-error {
+    border-right: 3px solid #96031A;
+  }
+  @media (min-width: 768px) {
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+  
+  .name {
+    margin-bottom: 10px;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+  .url,
+  .total {
+    font-weight: 300;
+    font-size: 12px;
+  }
+  .total {
+    margin-bottom: 10px;
+  }
+  a.see-more {
+    text-decoration: underline;
+    color: inherit;
+    font-size: 12px;
+  }
+  
+  
+}

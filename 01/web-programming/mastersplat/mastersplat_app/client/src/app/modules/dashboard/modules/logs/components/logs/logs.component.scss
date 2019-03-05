@@ -1,0 +1,22 @@
+@import 'assets/scss/_variables.scss';
+
+#mp-logs-container {
+  padding: 15px 0;
+  .mp-logs-list-container,
+  .mp-logs-result-container {
+    padding: 15px 0px;
+  }
+  .total-info {
+    font-weight: 300;
+  }
+  .perview-switch {
+    span {
+      font-weight: 300;
+      cursor: pointer;
+      &.active,
+      &:hover {
+        font-weight: 700;
+      }
+    }
+  }
+}

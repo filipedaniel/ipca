@@ -1,0 +1,23 @@
+{
+  "10010001" : "Error on get all Data Providers!",
+  "10010002" : "Error inserting Data Provider!",
+  "10010003" : "Error when try to find Data Provider!",
+  "10010004" : "Error when try to delete Data Provider!",
+  "10010005" : "Error Harvest Data Provider!",
+  "10010006" : "Error on get all Publications!",
+  "10010007" : "Error Harvest Data Providers!",
+
+
+  "20010001" : "Missing 'url' parameter on post body!",
+  "20010002" : "URL parameter not valid!",
+  "20010003" : "Missing 'name' parameter on post body!",
+  "20010004" : "Invalid Data Provider ID!",
+
+  "30010001" : "Data Provider URL already exists!",
+  "30010002" : "Data Provider not found!",
+  "30010003" : "Data provider already loaded!",
+  "30010004" : "All Data Providers already load!",
+  "30010005" : "Data Provider not load!",
+  "30010006" : "Data Providers not load!",
+  "30010007" : "Publications not found! Please Load Data Provider!"
+}

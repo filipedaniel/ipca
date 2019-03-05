@@ -1,0 +1,28 @@
+{
+  "name": "as-tp2",
+  "version": "1.0.0",
+  "description": "Arquitetura de Sistemas TP2 - API Restfull",
+  "scripts": {
+    "start-dev": "nodemon ./bin/www",
+    "start": "node ./bin/www",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "api-query-params": "^4.9.0",
+    "bcrypt-nodejs": "0.0.3",
+    "boom": "^7.3.0",
+    "compression": "^1.7.3",
+    "dotenv": "^6.1.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "jwt-simple": "^0.5.5",
+    "log4js": "^3.0.6",
+    "mongoose": "^5.3.14",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.7",
+    "swagger-ui-express": "^4.0.2"
+  }
+}

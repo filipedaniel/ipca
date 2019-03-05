@@ -1,0 +1,936 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "MastersPlat",
+    "description": "Plataforma de agregação e descoberta de dissertações de mestrado. Ao agregar um conjunto de fontes de informação (Data Providers), é possível pesquisar e consultar todas as teses inseridas na aplicação e associadas a cada uma das fontes de informação. "
+  },
+  "host": "pw-mastersplat.herokuapp.com",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "data-providers",
+      "description": "Informação das várias fontes de informação (Data Providers)"
+    },
+    {
+      "name": "publications",
+      "description": "Informação das teses de mestrado"
+    },
+    {
+      "name": "logs",
+      "description": "Registos de agregações de teses"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/data-providers": {
+      "get": {
+        "tags": [
+          "data-providers"
+        ],
+        "summary": "Todos os Data Providers",
+        "description": "Retorna uma lista de Data Providers. É possivel, através dos parametros definir o limite e o offset (skip) dos items, podendo assim paginar o resultado, aplicar projeções e ordenações aos dados para obter  resultado pretendido. É possivél também aplicar filtros avançados aos dados através de parametros em query. Ex:. \"field>0\" (https://www.npmjs.com/package/api-query-params).",
+        "operationId": "getAllDataProviders",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "número de items a visualizar",
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "offset à lista de resultados",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "ordernar o resultado por um/varios atridutos",
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "informação que pretende obter (field1, field2, ...)",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "limit": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "skip": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "page": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "pages": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/DataProvider"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error on get all Data Providers!"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "data-providers"
+        ],
+        "summary": "Adicionar um novo Data Provider",
+        "description": "Adiciona um novo registo de um Data Provider.",
+        "operationId": "postDataProvider",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "nome e url do Data Provider",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Insert Data Provider successfully!"
+          },
+          "400": {
+            "description": "Invalid parameter on post body!"
+          },
+          "409": {
+            "description": "Data Provider URL already exists!"
+          },
+          "500": {
+            "description": "Error inserting Data Provider!"
+          }
+        }
+      }
+    },
+    "/data-providers/{id}": {
+      "get": {
+        "tags": [
+          "data-providers"
+        ],
+        "summary": "Informação de um Data Provider",
+        "description": "Para um id, retorna informação do Data Provider associado.",
+        "operationId": "getDataProvider",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do Data Provider desejado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "informação que pretende obter (field1,field2,...)",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Data Provider successfully!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/DataProvider"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Data Provider ID!"
+          },
+          "404": {
+            "description": "Data Provider not found!"
+          },
+          "500": {
+            "description": "Error when try to find Data Provider"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "data-providers"
+        ],
+        "summary": "Atualiza um Data Provider",
+        "description": "Para um id, atualiza informação do respetivo Data Provider",
+        "operationId": "patchDataProvider",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id do Data Provider desejado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "array com a informação das propriedades e respetivos valores para atualizar",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "property_name": {
+                    "type": "string"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data Provider Updated!",
+            "schema": {
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/DataProvider"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Data Provider ID!"
+          },
+          "404": {
+            "description": "Data Provider not found!"
+          },
+          "500": {
+            "description": "Error updated data Provider"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "data-providers"
+        ],
+        "summary": "Apaga registo de um Data Provider",
+        "description": "Para um id, apaga registo do Data Provider e todas as teses de mestrado associadas",
+        "operationId": "deleteDataProvider",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "id do Data provider",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data Provider and publications deleted!"
+          },
+          "400": {
+            "description": "Invalid Data Provider ID!"
+          },
+          "404": {
+            "description": "Data Provider not found!"
+          },
+          "500": {
+            "description": "Error when try to delete Data Provider!"
+          }
+        }
+      }
+    },
+    "/data-providers/{id}/publications": {
+      "get": {
+        "tags": [
+          "data-providers"
+        ],
+        "summary": "Publicações de um Data Provider",
+        "description": "Retorna informação de todas as publicações de um unico Data Provider. É possivel, através dos parametros definir o limite e o offset (skip) dos items, podendo assim paginar o resultado, aplicar projeções e ordenações aos dados para obter resultado pretendido. É possivél também aplicar filtros avançados aos dados através de parametros em query. Ex:. “field>0” (https://www.npmjs.com/package/api-query-params).",
+        "operationId": "getDataProviderPublications",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do Data Provider",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "número de items a visualizar",
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "offset à lista de resultados",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "ordernar o resultado por um/varios atridutos",
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "informação que pretende obter (field1,field1,...)",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Publications Data Provider successfully!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "limit": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "skip": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "page": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "pages": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "$ref": "#/definitions/Publication"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data Provider not found!"
+          },
+          "500": {
+            "description": "Error loading Data Provider publications!"
+          }
+        }
+      }
+    },
+    "/data-providers/{id}/harvest": {
+      "post": {
+        "tags": [
+          "data-providers"
+        ],
+        "summary": "Carrega ou atualiza teses de um Data Provider",
+        "description": "Carrega ou atualiza todas as teses de mestrado associadas a um Data Provider.",
+        "operationId": "harvestDataProviders",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do Data provider",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Harvest all Data Providers!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "url": {
+                      "type": "string"
+                    },
+                    "inserted_date": {
+                      "type": "integer"
+                    },
+                    "updated_date": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Data Provider not found!"
+          },
+          "500": {
+            "description": "Error Harvest Data Provider!"
+          }
+        }
+      }
+    },
+    "/data-providers/harvest": {
+      "post": {
+        "tags": [
+          "data-providers"
+        ],
+        "summary": "Carrega ou atualiza teses de todos os Data Providers",
+        "description": "Carrega ou atualiza todas as teses de mestrado associadas a todos os Data Providers inseridos na aplicação.",
+        "operationId": "harvestDataProvider",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Harvest all Data Providers!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "integer"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      },
+                      "inserted_date": {
+                        "type": "integer"
+                      },
+                      "updated_date": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No data provider found!"
+          },
+          "500": {
+            "description": "Error Harvest Data Providers!"
+          }
+        }
+      }
+    },
+    "/publications": {
+      "get": {
+        "tags": [
+          "publications"
+        ],
+        "summary": "Todas as publicações",
+        "description": "Retorna uma lista de Publicações.  É possivel, através dos parametros definir o limite e o offset (skip) dos items, podendo assim paginar o resultado, aplicar projeções e ordenações aos dados para obter resultado pretendido. É possivél também aplicar filtros avançados aos dados através de parametros em query. Ex:. “field>0” (https://www.npmjs.com/package/api-query-params).",
+        "operationId": "getAllPublications",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "número de items a visualizar",
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "offset aos items",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "ordernar o resultado por um/varios atridutos",
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "informação que pretende obter (field1,field2,...)",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "limit": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "skip": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "page": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "pages": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Publication"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error on get all Publications!"
+          }
+        }
+      }
+    },
+    "/publications/{id}": {
+      "get": {
+        "tags": [
+          "publications"
+        ],
+        "summary": "Informação de uma publicação",
+        "description": "Para um id, retorna informação da publicação associada.",
+        "operationId": "getPublication",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id da publicação desejado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "informação que pretende obter (field1,field2,...)",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Publication successfully!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Publication"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Publication ID!"
+          },
+          "404": {
+            "description": "Publication not found!"
+          },
+          "500": {
+            "description": "Error when try to find Publication!"
+          }
+        }
+      }
+    },
+    "/logs": {
+      "get": {
+        "tags": [
+          "logs"
+        ],
+        "summary": "Todos os Logs",
+        "description": "Retorna uma lista de Logs. É possivel, através dos parametros definir o limite e o offset (skip) dos items, podendo assim paginar o resultado, aplicar projeções e ordenações aos dados para obter resultado pretendido. É possivél também aplicar filtros avançados aos dados através de parametros em query. Ex:. “field>0” (https://www.npmjs.com/package/api-query-params).",
+        "operationId": "getAllLogs",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "número de items a visualizar",
+            "type": "string"
+          },
+          {
+            "name": "skip",
+            "in": "query",
+            "description": "offset aos items",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "ordernar o resultado por um/varios atridutos",
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "informação que pretende obter (field1,field2,...)",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "limit": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "skip": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "page": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "pages": {
+                  "type": "integer",
+                  "format": "int64"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Log"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error on get all Logs!"
+          }
+        }
+      }
+    },
+    "/logs/{id}": {
+      "get": {
+        "tags": [
+          "logs"
+        ],
+        "summary": "Informação de um Log",
+        "description": "Para um id, retorna informação do Log associado.",
+        "operationId": "getLog",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do log desejado",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "fields",
+            "in": "query",
+            "description": "informação que pretende obter (id1,id2,...)",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Log successfully!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "data": {
+                  "$ref": "#/definitions/Log"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Log ID!"
+          },
+          "404": {
+            "description": "Log not found!"
+          },
+          "500": {
+            "description": "Error when try to find Log!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "DataProvider": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "total": {
+          "type": "integer"
+        },
+        "inserted_date": {
+          "type": "string"
+        },
+        "updated_date": {
+          "type": "string"
+        },
+        "status": {
+          "type": "integer"
+        }
+      }
+    },
+    "Publication": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "datestamp": {
+          "type": "string"
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "creator": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "subject": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "description": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "identifier": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "publisher": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "contributor": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "date": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "type": {
+              "type": "string"
+            },
+            "lang": {
+              "type": "string"
+            },
+            "rights": {
+              "type": "string"
+            }
+          }
+        },
+        "data_provider": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "name": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Log": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "integer"
+        },
+        "start_date": {
+          "type": "string"
+        },
+        "end_date": {
+          "type": "string"
+        },
+        "total_records": {
+          "type": "integer"
+        },
+        "data_provider": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Errors": {
+      "type": "object",
+      "properties": {
+        "error": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+@import 'assets/scss/_variables.scss';
+
+#mp-statistics-container {
+  padding: 15px 0;
+  
+  /* Total Card */
+  .mp-total-card {
+    padding: 15px 15px 5px;
+    .mp-card-title {
+      font-size: 13px;
+      i {
+        margin-right: 8px;
+      }
+    }
+    .mp-card-total {
+      font-size: 40px;
+      font-weight: 700;
+    }
+  }
+
+  /* Latest Card */
+  .mp-card-latest {
+    //border-radius: 0.25rem;
+    .mp-card-title {
+      h2 {
+        font-size: 16px;
+        margin: 12px 0 22px;
+        display: block;
+        font-weight: 700;
+      }
+    }
+    .data-list {
+      border-top: 2px solid $gray-color;
+      .data-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0px;
+        .data-list-left{
+          width: calc(100% - 20px);
+        }
+        &:not(:last-child) {
+          border-bottom: 1px solid $gray-color;
+        }
+        &:last-child {
+          padding-bottom: 0;
+        }
+        .name {
+          padding-right: 10px;
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+        .url {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: calc(100% - 30px);
+        }
+      }
+    }
+  }
+
+}

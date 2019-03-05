@@ -1,0 +1,31 @@
+{
+  "title": "time costs",
+  "data": {
+    "barcelos": {
+      "barcelos": 1,
+      "braga": 2,
+      "porto": 4,
+      "lisboa": 8
+    },
+    "braga": {
+      "barcelos": 2,
+      "braga": 1,
+      "porto": 2,
+      "lisboa":6
+    },
+    "porto": {
+      "barcelos": 4,
+      "braga": 2,
+      "porto": 1,
+      "lisboa":4
+    },
+    "lisboa": {
+      "barcelos": 8,
+      "braga": 6,
+      "porto": 4,
+      "lisboa": 1
+    }
+  }
+}
+
+

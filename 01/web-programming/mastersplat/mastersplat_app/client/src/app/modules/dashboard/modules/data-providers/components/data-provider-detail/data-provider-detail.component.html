@@ -1,0 +1,79 @@
+<div class="main-container" id="mp-data-provider-container">
+  <div class="container-top-bar">
+    <h1>Data Provider</h1>
+  </div>
+  <div class="container-fluid">
+    <div *ngIf="pageStatus === 1" class="data-provider-detail-content">
+      Loading ...
+    </div>
+    <div *ngIf="!dataProvider && pageStatus === 0" class="data-provider-detail-content">
+      <p>Data Provider not found!</p>
+    </div>
+    <div *ngIf="dataProvider" class="data-provider-detail-content">
+      <div class="row">
+        <div class="col-12 mb-15">
+          <span class="btn-back" (click)="goBack()"><i class="fas fa-chevron-left"></i> Back</span>
+        </div>
+        <div class="col-12">
+          <form [formGroup]="rForm" (ngSubmit)="updateDataProvider(rForm.value)">
+            <div class="row">
+              <div class="col-12 col-md-7">
+                <div class="form-group mp-input">
+                  <label for="dataProviderName">Name</label>
+                  <input type="text" class="form-control" id="dataProviderName" formControlName="name" required placeholder="Name">
+                  <div class="alert" *ngIf="!rForm.controls['name'].valid && rForm.controls['name'].touched">
+                      Dataprovider name is required!
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-7">
+                <div class="form-group mp-input">
+                  <label for="dataProviderUrl">Url</label>
+                  <input type="text" class="form-control" id="url" formControlName="url" required id="dataProviderUrl" placeholder="Url" value="{{ dataProvider.url}}">
+                  <div class="alert" *ngIf="!rForm.controls['url'].valid && rForm.controls['url'].touched">
+                      Valid url required (http...)!
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-7">
+                <div class="group-detail group-total">
+                  Total of {{ dataProvider.total }} publications
+                  <div class="refresh-list-content">
+                    <i class="fas fa-sync-alt" (click)="refreshDataProvider()"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-md-7">
+                <div class="group-detail">
+                  <span>Inserted Date: </span>
+                  {{ dataProvider.inserted_date | date:'medium' }}
+                </div>
+              </div>
+              <div class="col-12 col-md-7" *ngIf="dataProvider.updated_date">
+                <div class="group-detail">
+                  <span>Updated Date: </span>
+                  {{ dataProvider.updated_date | date:'medium' }}
+                </div>
+              </div>
+              <div class="col-12 col-md-7">
+                <div class="group-detail">
+                  <span>Status : </span>
+                  {{ dataProvider.status }}
+                </div>
+              </div>
+
+              <div class="col-12 col-md-7">
+                <button type="submit" [disabled]="!rForm.valid" class="btn mp-btn btn-light">Save Data</button>
+                <button *ngIf="!dataProvider.updated_date" (click)="loadHarvestDataProvider()" type="button" class="btn mp-btn btn-light">Load Publications</button>
+                <button (click)="updateHarvestDataProvider()" type="button" class="btn mp-btn btn-light">Update Publications</button>
+                <button (click)="deleteDataProvider()" type="button" class="btn mp-btn btn-light">Delete</button>
+              </div>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

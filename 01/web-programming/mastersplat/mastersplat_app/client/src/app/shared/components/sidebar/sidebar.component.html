@@ -1,0 +1,50 @@
+
+<div id="mp-sidebar-container" [@flyInOut]>
+  <div class="sidebar-header-container">
+    <div class="logo">
+      <a routerLink="/dashboard">
+        MastersPlat
+      </a>
+    </div>
+    <div class="nav-trigger" (click)="onToggleSidebar()">
+      <i class="fas" [ngClass]="{'fa-times' : expandSidebar, 'fa-bars' : !expandSidebar}"></i>
+    </div>
+  </div>
+  
+  <div class="sidebar-container" [ngClass]="{'open' : expandSidebar}">
+    <nav class="sidebar-items">
+      <ul>
+        <li>
+          <a routerLink="/dashboard/data-providers" routerLinkActive="active" (click)="onToggleSidebarFalse()">
+            <i class="fa fa-server"></i>
+            <span>Data Providers</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/dashboard/publications" routerLinkActive="active" (click)="onToggleSidebarFalse()">
+            <i class="fa fa-newspaper"></i>
+            <span>Publications</span>
+          </a>
+        </li>
+        <li>
+            <a routerLink="/dashboard/logs" routerLinkActive="active" (click)="onToggleSidebarFalse()">
+              <i class="fa fa-file-alt"></i>
+              <span>Logs</span>
+            </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="sidebar-options">
+      <div class="user-mode">
+        <a routerLink="/">User Mode</a>
+      </div>
+      <div class="version-info">
+        <span>Version: v1</span>
+        &bull;
+        <span><a href="/api/v1/api-docs" target="_blank">Docs</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay-sidebar" [ngClass]="{'open' : expandSidebar}" (click)="onToggleSidebarFalse()"></div>
+</div>

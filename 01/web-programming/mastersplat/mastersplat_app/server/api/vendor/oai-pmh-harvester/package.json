@@ -1,0 +1,16 @@
+{
+  "name": "oai-pmh-harvester",
+  "version": "1.0.0",
+  "description": "OAI-PMH Harvester",
+  "main": "demo.js",
+  "dependencies": {},
+  "devDependencies": {
+    "run-script-os": "^1.0.3"
+  },
+  "scripts": {
+    "prepare": "cd my_modules/oai-pmh-harvester/; npm i",
+    "start": "node demo.js"
+  },
+  "author": "Miguel Ferreira",
+  "license": "MIT"
+}

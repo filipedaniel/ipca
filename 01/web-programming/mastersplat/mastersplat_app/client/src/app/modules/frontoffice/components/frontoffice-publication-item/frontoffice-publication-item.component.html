@@ -1,0 +1,16 @@
+
+<div class="publication-item">
+  <div class="title">
+    <a routerLink="publications/{{ publication['_id'] }}">
+      {{ publication['metadata']['title'] }}  
+    </a>
+  </div>
+  <div class="creator"><span>Creator: </span>{{ publication['metadata']['creator'] }}</div>
+  <div class="date"><span>Date: </span>{{ publication['datestamp'] | date:'longDate' }}</div>
+  <div class="description" *ngIf="publication['metadata']['description'].length > 0">
+    {{ publication['metadata']['description'] }}
+  </div>
+  <div class="dataprovider"><span>DataProvider:</span> {{ publication['data_provider']['name'] }}</div>
+  <a routerLink="publications/{{ publication['_id'] }}" class="see-more">Ver Mais</a>
+</div>
+  

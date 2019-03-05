@@ -1,0 +1,125 @@
+
+<div class="main-container" id="mp-statistics-container">
+  <div class="container-top-bar">
+    <h1>Dashboard</h1>
+  </div>
+  <div class="container-fluid">
+    <div *ngIf="pageState === 0 && latestDataProviders && latestPublications && latestLogs; else loadingData">
+      <div class="row">
+        <div class="col-12">
+          <div class="general-total-container">
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <div class="card mp-total-card">
+                  <div class="mp-card-title">
+                    <i class="fa fa-server"></i>Total Data Providers
+                  </div>
+                  <div class="mp-card-total">{{ latestDataProviders.total || 0 }}</div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="card mp-total-card">
+                  <div class="mp-card-title">
+                    <i class="fa fa-newspaper"></i>Total Publications
+                  </div>
+                  <div class="mp-card-total">{{ latestPublications.total || 0 }}</div>
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <div class="card mp-total-card">
+                  <div class="mp-card-title">
+                    <i class="fa fa-file-alt"></i>Total Logs
+                  </div>
+                  <div class="mp-card-total">{{ latestLogs.total || 0 }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <hr>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-12">
+          <div class="card mp-card-latest">
+            <div class="mp-card-title">
+              <h2>Latest Publications</h2>
+            </div>
+            <div class="data-list">
+              <div *ngFor="let publication of latestPublications?.data" class="data-item">
+                <div class="name">
+                  <a routerLink="/dashboard/publications/{{ publication._id }}">
+                    {{ publication.metadata.title }}
+                  </a>
+                  </div>
+                <a routerLink="/dashboard/publications/{{ publication._id }}">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card mp-card-latest">
+            <div class="mp-card-title">
+              <h2>Latest Data Providers</h2>
+            </div>
+            <div class="data-list">
+              <div *ngFor="let dataprovider of latestDataProviders?.data" class="data-item">
+                <div class="data-list-left">
+                  <div class="name">
+                    <a routerLink="/dashboard/data-providers/{{ dataprovider._id }}">
+                      {{ dataprovider.name }}
+                    </a>
+                  </div>
+                  <div class="url">{{ dataprovider.url }}</div>
+                </div>
+                <a routerLink="/dashboard/data-providers/{{ dataprovider._id }}">
+                  <i class="fas fa-cog"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+          <div class="card mp-card-latest">
+            <div class="mp-card-title">
+              <h2>Latest Logs</h2>
+            </div>
+            <div class="data-list">
+              <div *ngFor="let log of latestLogs?.data" class="data-item">
+                <div class="data-list-left">
+                  <div class="name">
+                    <a routerLink="/dashboard/logs/{{ log._id }}">
+                      {{ log.data_provider.name }}
+                    </a>
+                  </div>
+                  <div class="total">{{ log.total_records }} publications</div>
+                </div>
+                <a routerLink="/dashboard/logs/{{ log._id }}">
+                  <i class="fas fa-plus"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <ng-template #loadingData>
+      <div class="row">
+        <div class="col-12">
+          <div class="mp-search-loading">
+            loading...
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

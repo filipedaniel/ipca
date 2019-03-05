@@ -1,0 +1,29 @@
+{
+  "title" : "Fornecedor B",
+  "data": {
+    "barcelos": {
+      "barcelos": 7,
+      "braga": 7,
+      "porto": 15,
+      "lisboa": 30
+    },
+    "braga": {
+      "barcelos": 7,
+      "braga": 3,
+      "porto": 10,
+      "lisboa": 30
+    },
+    "porto": {
+      "barcelos": 15,
+      "braga": 10,
+      "porto": 5,
+      "lisboa": 20
+    },
+    "lisboa": {
+      "barcelos": 30,
+      "braga": 30,
+      "porto": 20,
+      "lisboa": 10
+    }
+  }
+}
