@@ -14,7 +14,7 @@ Now, I decided to put some projects together.
 
   - **Development of Application Interfaces**
   
-    Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem.
+    Data visualization application on Processing, for see number of fires in Portugal based on CSV files.
   
   - **Concurrent and Distributed Programming**
   
