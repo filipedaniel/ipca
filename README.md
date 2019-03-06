@@ -24,13 +24,9 @@ Now, I decided to put some projects together.
 
   - **[Web Programming](https://github.com/filipedaniel/ipca/tree/master/01/web-programming)** 
 
-    Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem.
-
 - **2nd year**
 
   - **[Systems Architecture](https://github.com/filipedaniel/ipca/tree/master/02/systems-architecture)**
-
-    Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem.
 
 
 
