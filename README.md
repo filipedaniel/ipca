@@ -16,19 +16,19 @@ Now, I decided to put some projects together.
   
     Data visualization application on Processing, for see number of fires in Portugal based on CSV files.
   
-  - **Concurrent and Distributed Programming**
+  - **[Concurrent and Distributed Programming](https://github.com/filipedaniel/ipca/tree/master/01/concurrent-and-distributed-programming)**
   
     The first project (tp1) was to implement a brute-force Java application to find a word for a given SHA-512 hash. The application was implemented in a sequential and parallel fashion for a number of user-defined threads.
 
     The second project (tp2) was to implement a distributed application using Akka.
 
-  - **Web Programming** 
+  - **[Web Programming](https://github.com/filipedaniel/ipca/tree/master/01/web-programming)** 
 
     Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem.
 
 - **2nd year**
 
-  - **Systems Architecture**
+  - **[Systems Architecture](https://github.com/filipedaniel/ipca/tree/master/02/systems-architecture)**
 
     Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem Lorem lorem.
 
