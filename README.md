@@ -23,6 +23,8 @@ Now, I decided to put some projects together.
     The second project (tp2) was to implement a distributed application using Akka.
 
   - **[Web Programming](https://github.com/filipedaniel/ipca/tree/master/01/web-programming)** 
+    
+    The project consists of an API that aggregates master theses, an interface where it is possible to consult all the information and an admin dashboard where it is possible to do all CRUD operations with the API. The server is built using NodeJS and Mongo. The Dashboard was built in Angular.
 
 - **2nd year**
 
